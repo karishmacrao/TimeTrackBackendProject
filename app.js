@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const apiRouter = require('./myapp/routers/router');
+var ip = require('ip');
 
 function main() {
     let app = express();
@@ -23,6 +24,7 @@ function main() {
     const port = process.env.PORT === 'production' ? (process.env.PORT || 80) : 8080;
     const server = app.listen(port, function () {
         console.log('server is listening at port' + port);
+        console.log ( ip.address());
     }
     );
 }

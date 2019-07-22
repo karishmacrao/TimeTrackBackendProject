@@ -4,6 +4,7 @@ const config = require('../config/config');
 const jwt = require('jsonwebtoken');
 
 exports.jwt = function () {
+    console.log("Base")
     return expressJwt({ secret, isRevoked }).unless({
         path: [
             '/api/user/login',
@@ -13,6 +14,7 @@ exports.jwt = function () {
 }
 
 async function isRevoked(req, payload, done) {
+    console.log("isRevoked")
     const user = await userService.getById(payload.sub);
     if (!user) {
         return done(null, true);
@@ -21,6 +23,7 @@ async function isRevoked(req, payload, done) {
 };
 
 exports.createToken = function (user, header, cb) {
+    console.log("createToken")
     let token = jwt.sign({
         user,
         userAgent: header
@@ -34,8 +37,10 @@ exports.createToken = function (user, header, cb) {
 }
 
 exports.decodeOnlyToken = async function (token, header, cb) {
+    console.log("token" +config.tokenKey);
     jwt.verify(token, config.tokenKey, (err, decoded) => {
         if (err) {
+            console.log("err" + err);
             cb(err, null)
         }
         else {

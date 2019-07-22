@@ -13,8 +13,12 @@ exports.login = function(req, res, next) {
 }
 
 exports.register = function (req, res, next) {
+
     userService.addEmp(req.body)
-        .then(() => res.send("Registration successful!"))
+        .then(user =>
+            {
+                res.json({message: "Registration successful!"})
+            })
         .catch(err => next(err));
 }
 
@@ -30,10 +34,10 @@ exports.getEmp = function(req,res,next){
     .catch(err=>next(err)); 
 }
 
-exports.updateById = function(req,res,next){
-    userService.updateById(req.params.id,req.body)
-    .then(()=>res.send(user))
-    .catch(err=>next(err)); 
+exports.updateById = function(req, res, next) {
+    userService.updateById(req.params.id, req.body)
+        .then(user => res.json(user))
+        .catch(err => next(err));
 }
 
 exports.delete = function(req, res, next) {
