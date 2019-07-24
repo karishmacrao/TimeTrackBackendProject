@@ -24,13 +24,13 @@ exports.register = function (req, res, next) {
 
 exports.getAllEmps = function(req,res,next){
     userService.getAllEmps()
-    .then(()=>res.send(users))
+    .then(users=>{res.send(users)})
     .catch(err=>next(err)); 
 }
 
 exports.getEmp = function(req,res,next){
-    userService.getEmp(req.params.username)
-    .then(()=>res.send(user))
+    userService.getEmp(req.params.id)
+    .then(user=>res.send(user))
     .catch(err=>next(err)); 
 }
 

@@ -11,7 +11,9 @@ let checkToken = (req, res, next) => {
 
         console.log(token)
         jwt.verify(token, config.tokenKey, (err, decoded) => {
+            console.log("Token under verification " + token);
             if (err) {
+                console.log("Token error"+err);
                 return res.json({
                     success: false,
                     message: "Invalid token"

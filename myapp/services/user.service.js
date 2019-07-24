@@ -35,9 +35,10 @@ async function getAllEmps() {
     return await User.find();
 }
 
-async function getEmp(userParam) {
-    // return await User.findById(id);
-    return await User.findOne({ username: userParam });
+async function getEmp(id) {
+     return await User.findById(id);
+    // const user = await User.findById(id);
+    // return await User.findOne({ id: userParam.id });
 }
 
 async function addEmp(userParam) {
