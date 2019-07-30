@@ -15,16 +15,16 @@ async function login({ username, password }, header) {
     const user = await User.findOne({ username });
     if (user && bcrypt.compareSync(password, user.password)) {
 
-        const token  = await generateToken(user, header);
-        return {user, token};
+        const token = await generateToken(user, header);
+        return { user, token };
 
     }
 }
 
 async function generateToken(user, header) {
-     let token = null
+    let token = null
 
-     await jwt.createToken(user.id, header,(err,data)=>{
+    await jwt.createToken(user.id, header, (err, data) => {
         token = data;
     });
 
@@ -36,7 +36,7 @@ async function getAllEmps() {
 }
 
 async function getEmp(id) {
-     return await User.findById(id);
+    return await User.findById(id);
     // const user = await User.findById(id);
     // return await User.findOne({ id: userParam.id });
 }
@@ -56,7 +56,8 @@ async function addEmp(userParam) {
 }
 
 async function deleteById(id) {
-    await User.findOneAndDelete(id);
+    console.log("ID " + id);
+    await User.findById(id).findOneAndRemove(id);
 }
 
 async function updateById(id, userParam) {
@@ -71,5 +72,5 @@ async function updateById(id, userParam) {
     }
     Object.assign(user, userParam);
 
-   return await user.save();
+    return await user.save();
 }

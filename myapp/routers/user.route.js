@@ -8,8 +8,9 @@ router.post('/login', userCtrl.login);
 router.post('/register', userCtrl.register);
 router.use(middleware.checkToken);
 router.get('/all', userCtrl.getAllEmps);
-router.get('/:id?', userCtrl.getEmp);
+router.get('/getEmp/:id', userCtrl.getEmp);
 router.put('/:id', userCtrl.updateById);
-router.delete('/:id', userCtrl.delete);
-
+router.delete('/delete/:id', userCtrl.deleteById);
+// router.post('/addcompany',userCtrl.addCompany);
+// router.get('/allcompany',userCtrl.getAllComps);
 module.exports = router;
