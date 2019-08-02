@@ -15,6 +15,12 @@ exports.getAllCompany = function (req, res, next) {
         .then(companys => { res.json(companys) })
         .catch(err => next(err));
 }
+exports.deleteCompany = function (req, res, next) {
+    console.log("delete");
+    companyService.deleteCompany(req.params.id)
+        .then(company => res.json({ message: "Company Deleted Successfully" }))
+        .catch(err => next(err));
+}
 
 exports.getCompany = function (req, res, next) {
     console.log("getcompany");

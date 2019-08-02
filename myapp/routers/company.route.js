@@ -7,5 +7,5 @@ router.use(middleware.checkToken);
 router.get('/getcompany',companyCtrl.getCompany)
 router.post('/addcompany',companyCtrl.addCompany);
 router.get('/allcompany',companyCtrl.getAllCompany);
-
+router.delete('/delete/:id',companyCtrl.deleteCompany);
 module.exports = router;

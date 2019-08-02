@@ -4,8 +4,9 @@ const jwt = require('../helpers/jwt');
 
 const Company = db.Company;
 module.exports = {
-    addComapny,
+    addCompany,
     getCompany,
+    deleteCompany,
     getAllCompany
 };
 
@@ -14,12 +15,19 @@ async function getCompany(id) {
     // const user = await User.findById(id);
     // return await User.findOne({ id: userParam.id });
 }
+async function deleteCompany(id)
+{
+    await Company.findById(id).findOneAndRemove(id);
+}
 
 
-async function addComapny(companyParam) {
-    if (await User.findOne({ companyId: companyParam.companyId })) {
+async function addCompany(companyParam) {
+    if (await Company.findOne({ companyId: companyParam.companyId })) {
         throw 'Company ID "' + companyParam.companyId + '" is already taken';
     }
+    const company = new Company(companyParam);
+
+    await company.save();
 }
 
 async function getAllCompany() {
