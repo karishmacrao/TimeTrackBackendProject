@@ -22,10 +22,16 @@ exports.deleteProject = function (req, res, next) {
         .catch(err => next(err));
 }
 
+exports.deleteAllProject = function (req, res, next) {
+    console.log("deleteAllProject");
+    projectService.deleteAllProject(req.params.companyId)
+        .then(project => res.json({ message: "All Project Deleted Successfully" }))
+        .catch(err => next(err));
+}
+
 exports.getProject = function (req, res, next) {
-    console.log("getProject");
+    console.log("getProject " + req.params.id);
     projectService.getProject(req.params.id)
         .then(project => { res.json(project) })
         .catch(err => next(err));
-     console.log(project);
-    }
+}

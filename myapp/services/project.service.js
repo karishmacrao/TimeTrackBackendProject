@@ -6,18 +6,23 @@ const Project = db.Project;
 module.exports = {
     addProject,
     getProject,
+    deleteAllProject,
     deleteProject,
     getAllProject
 };
 
 async function getProject(id) {
+    console.log(id);
     return await Project.findById(id);
+
     // const user = await User.findById(id);
     // return await User.findOne({ id: userParam.id });
 }
-async function deleteProject(id)
-{
+async function deleteProject(id) {
     await Project.findById(id).findOneAndRemove(id);
+}
+async function deleteAllProject(compId) {
+    await Project.deleteMany({ companyId : compId })
 }
 
 async function addProject(projectParam) {
