@@ -11,6 +11,5 @@ router.get('/all', userCtrl.getAllEmps);
 router.get('/getEmp/:id', userCtrl.getEmp);
 router.put('/:id', userCtrl.updateById);
 router.delete('/delete/:id', userCtrl.deleteById);
-// router.post('/addcompany',userCtrl.addCompany);
-// router.get('/allcompany',userCtrl.getAllComps);
+
 module.exports = router;

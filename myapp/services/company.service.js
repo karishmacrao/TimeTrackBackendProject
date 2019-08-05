@@ -21,6 +21,7 @@ async function deleteCompany(id)
 }
 
 
+
 async function addCompany(companyParam) {
     if (await Company.findOne({ companyId: companyParam.companyId })) {
         throw 'Company ID "' + companyParam.companyId + '" is already taken';
